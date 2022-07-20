@@ -1,0 +1,130 @@
+/*Обнуление*/
+*{padding: 0;margin: 0;}
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
+/*--------------------*/
+.body{
+	color: #444;
+}
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+}
+/*--------------------- HEADER start -----------------------------------------------------------------------*/
+.header {
+}
+.header__container {
+    background-color: #DCDCDC;
+    display: flex;
+    min-height: 80px;
+    align-items: center;
+    max-width: 1200px;
+    padding: 0px 15px;
+    margin: 0px auto;
+}
+/*---------------------------------------------------*/
+.header__logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: red;
+}
+/*---------------------------------------------------*/
+.header__menu{
+    margin: 0px 0px 0px 80px;
+}
+.menu__list {
+    display: flex;
+}
+.menu__item:not(:last-child) {
+    margin: 0px 20px 0px 0px;
+}
+.menu__link {
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 34px;
+}
+/*--------------------- HEADER end -----------------------------------------------------------------------*/
+/*-----------------------MAIN start -----------------------------------------------------------------------*/
+.main__container {
+    background-color: #DCDCDC;
+    max-width: 1200px;
+    padding: 0px 15px;
+    margin: 0px auto;
+}
+/*---------------------------------------------------*/
+.weather__menu {
+    margin: 0px 0px 30px 0px;
+}
+.weather__menu__list {
+    display: flex;
+}
+.weather__menu__item:not(:last-child) {
+    margin: 0px 60px 0px 0px;
+}
+.weather__menu__item {
+}
+.weather__menu__link {
+    color: #800080;
+    font-size: 20px;
+    font-weight: 400;
+}
+/*---------------------------------------------------*/
+.message__error {
+    margin: 0px 0px 10px 0px;
+    color: red;
+    font-size: 14px;
+}
+.find__city__form__add{
+    margin: 5px 0px 10px 0px;
+    font-size: 16px;
+}
+.info__many__city{
+    margin: 5px 0px 10px 0px;
+    font-size: 16px;
+}
+.case__city__form__input{
+    margin: 0px 0px 10px 0px;
+    font-size: 18px;
+}
+.case__city__item{
+    margin: 5px ;
+    font-size: 18px;
+}
+.div__table__weather{
+    margin: 5px 0px 10px 0px;
+}
+.table__title{
+    margin: 10px ;
+    font-size: 18px;
+}
+.table__weather {
+    border-collapse: collapse;
+}
+.table__weather th{
+    padding: 0 3px;
+}
+.table__weather td {
+    padding: 0 3px;
+}
+.table__weather th{
+    border: 1px solid #000;
+}
+.table__weather td{
+    border: 1px solid #000;
+}
+.weather__rain{
+    font-size: 12px;
+}

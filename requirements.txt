@@ -1,0 +1,12 @@
+flask
+SQLAlchemy
+pandas
+beautifulsoup4
+requests
+pytest
+flask_sqlalchemy
+flask_restful
+marshmallow
+flask_marshmallow
+flask_sqlalchemy
+marshmallow-sqlalchemy

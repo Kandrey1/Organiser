@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include 'weather/nav_weather.html' %}
+
+    <div class="message__error">
+        {% for msg in get_flashed_messages() %}
+            <div class="flash">{{ msg }}</div>
+        {% endfor %}
+    </div>
+    {% if ((context.cities|length == 1) or (not context.cities)) %}
+        <div class="find__city__form__add">
+            <form class="find__city__form__input" action="" method="post">
+                <div class="find__city__add">
+                    <input class="find__city__input" type="text" name="city" value="" placeholder="Введите город для поиска"/>
+                    <select name="list__month">
+                        {% for key, value in context.list_month.items() %}
+                            <option value="{{ value }}" >{{ key }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select name="list__year">
+                        {% for year in context.list_year %}
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="button_find" name="find_city">Поиск</button>
+                </div>
+            </form>
+        </div>
+    {% else %}
+
+        <div class="info__many__city">
+            <p> Городов с названием < {{ context.cities[0].name }} > больше чем один.</p>
+            <p> Выберите тот который Вас интересует и нажмите подтвердить.</p>
+        </div>
+        <div>
+            <form class="case__city__form__input" action="" method="post">
+                <div>
+
+
+                 <select name="list__month">
+                    {% for key, value in context.list_month.items() %}
+                        <option value="{{ value }}" >{{ key }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="list__year">
+                    {% for year in context.list_year %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+                    <ul>
+                        {% for city in context.cities %}
+                            <li class="case__city__item"> <label> <input type="radio" name="radio" value="{{ city.id }}"> <span class="radio__span">{{ city.name }}-{{ city.region }}</span> </label> </li>
+                        {% endfor %}
+                    </ul>
+                    <button class="button_find" name="case_city">Подтвердить</button>
+                </div>
+            </form>
+        </div>
+    {% endif%}
+    {%if context.archive %}
+        <div>
+            <p>Архив погоды в городе < {{ context.title_city }} ></p>
+            <ol>
+                {% for c in context.archive %}
+                    <li class="find__city__item"> {{ c.date }} - {{ c.temp_day }} - {{ c.temp_evening }} </li>
+                {% endfor %}
+            </ol>
+        </div>
+    {% endif %}
+{% endblock %}
