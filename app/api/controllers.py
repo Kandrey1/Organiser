@@ -6,7 +6,9 @@ from ..models import TemperatureSchema
 
 
 class RequestGetFutureCity(Resource):
+    """ Возвращает json с прогнозом погоды на 2 недели """
     def get(self, city_n):
+        """ city_n: string - название города """
         try:
             cities = CheckInputCity().get_info_city(city_n)
             temp = {}
@@ -23,9 +25,11 @@ class RequestGetFutureCity(Resource):
 
 
 class RequestGetArhive(Resource):
+    """ Возвращает json с архивом погоды за месяц. В качестве параметров
+        запроса json в формате {'city':<string>, 'year':<int> , 'month': <int>}
+    """
     def get(self):
         try:
-
             temp_schema = TemperatureSchema(many=True)
 
             data = request.get_json()

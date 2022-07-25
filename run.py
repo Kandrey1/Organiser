@@ -5,6 +5,8 @@ from config import Config
 
 app = create_app(Config)
 
+client = app.test_client()
+
 from app.models import db
 
 
@@ -18,9 +20,11 @@ def create_table():
 
 from app.weather.blueprint import weather_bp
 from app.api.blueprint import api_bp
+from app.user.blueprint import user_bp
 
 app.register_blueprint(weather_bp, url_prefix='/weather')
 app.register_blueprint(api_bp, url_prefix='/api')
+app.register_blueprint(user_bp, url_prefix='/user')
 
 
 @app.route("/")

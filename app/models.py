@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
-from marshmallow import Schema, fields, pre_load, validate
+from marshmallow import Schema, fields
 from flask_marshmallow import Marshmallow
+from flask_login import UserMixin
+
 
 ma = Marshmallow()
 db = SQLAlchemy()
@@ -69,3 +71,20 @@ class TemperatureSchema(ma.Schema):
     temp_day = fields.String()
     temp_evening = fields.String()
     city_id = fields.Integer()
+
+
+class User(UserMixin, db.Model):
+    __tablename__ = 'user'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(1000))
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+
+    def __init__(self, name, email, password):
+        self.name = name
+        self.email = email
+        self.password = password
+
+    def __repr__(self):
+        return f"<{self.name} - {self.email}>"

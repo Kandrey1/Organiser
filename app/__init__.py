@@ -1,24 +1,5 @@
-# from flask import Flask
-# from config import Config
-# from flask_sqlalchemy import SQLAlchemy
-#
-#
-#
-# app = Flask(__name__)
-# app.config.from_object(Config)
-#
-# db = SQLAlchemy()
-# db.init_app(app)
-#
-#
-# @app.before_first_request
-# def create_table():
-#     db.create_all()
-#
-#
-# from app.weather.app import weather_bp
-# app.register_blueprint(weather_bp, url_prefix='/weather')
 from flask import Flask
+from flask_login import LoginManager
 
 
 def create_app(config_filename):
@@ -28,5 +9,15 @@ def create_app(config_filename):
 
     from .models import db
     db.init_app(app)
+
+    login_manager = LoginManager()
+    login_manager.login_view = 'user.login'
+    login_manager.init_app(app)
+
+    from .models import User
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
     return app

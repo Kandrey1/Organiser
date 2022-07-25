@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="h1_about">Авторизация</h1>
+    <div class="form_auth_block">
+        <div class="form_auth_block_content">
+            <div class="message__error">
+                {% for msg in get_flashed_messages() %}
+                    <div class="flash">{{ msg }}</div>
+                {% endfor %}
+            </div>
+            <form class="form_auth_style" action="" method="post">
+                Email:
+                <input name="email" placeholder="Введите Ваш email" required >
+                <br>
+                Пароль:
+                <input name="password" type="password"  placeholder="Введите пароль" required >
+                <br>
+                <button class="form_auth_button" type="submit" name="form_auth_submit">Войти</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

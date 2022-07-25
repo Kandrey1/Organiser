@@ -1,6 +1,6 @@
 from ..weather.utils import FutureTemperature, ArchiveTemperatureMonth
 from ..weather.parser_weather import ConnectSite, ParserWeather
-
+from run import client
 
 # ---------------------------- Parser_weather ----------------------------------
 def test_parser_connect():
@@ -86,3 +86,21 @@ def test_utils_cls_archive_create_url():
 #     pass
 
 # ---------------------------- Utils -------------------------------------------
+
+def test_rout_weather():
+    res = client.get('/weather/')
+
+    assert res.status_code == 200
+
+
+def test_rout_future():
+    res = client.get('/weather/future')
+
+    assert res.status_code == 200
+
+
+def test_rout_archive():
+    res = client.get('/weather/archive')
+
+    assert res.status_code == 200
+

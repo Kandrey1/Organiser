@@ -56,6 +56,20 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     font-weight: 600;
     line-height: 34px;
 }
+/*---------------------------------------------------*/
+.enter {
+    margin: 0px 0px 0px 600px;
+}
+.enter__list {
+    display: flex;
+}
+.enter__item {
+}
+.enter__link {
+    color: grey;
+    font-size: 16px;
+    font-weight: 400;
+}
 /*--------------------- HEADER end -----------------------------------------------------------------------*/
 /*-----------------------MAIN start -----------------------------------------------------------------------*/
 .main__container {
@@ -128,3 +142,72 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 .weather__rain{
     font-size: 12px;
 }
+/*================== АВТОРИЗАЦИЯ ============================*/
+.form_auth_block{
+    width: 400px;
+    height: 300px;
+    margin: 0;
+    background-size: cover;
+    border-radius: 4px;
+}
+.form_auth_block_content{
+    padding-top: 10%;
+}
+.form_auth_block input{
+    display: block;
+    width: 80%;
+    height: 35px;
+    border-radius: 5px;
+    border:none;
+    outline: none;
+}
+input:focus {
+    color: #000000;
+    border-radius: 5px;
+    border: 2px solid #436fea;
+}
+.form_auth_button{
+    display: block;
+    width: 80%;
+    margin-top: 15px;
+    border-radius: 15px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+}
+
+/*================== АВТОРИЗАЦИЯ ============================*/
+/*================== РЕГИСТРАЦИЯ ============================*/
+.form_reg_block{
+    width: 400px;
+    height: 300px;
+    margin: 0;
+    background-size: cover;
+    border-radius: 4px;
+}
+.form_reg_block_content{
+  padding-top: 10%;
+}
+.form_reg_block input{
+  display: block;
+  width: 80%;
+  height: 35px;
+  border-radius: 5px;
+  border:none;
+  outline: none;
+}
+input:focus {
+  color: #000000;
+  border-radius: 5px;
+  border: 2px solid #436fea;
+}
+.form_reg_button{
+    display: block;
+    width: 80%;
+    margin-top: 15px;
+    border-radius: 15px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+}
+/*================== РЕГИСТРАЦИЯ ============================*/

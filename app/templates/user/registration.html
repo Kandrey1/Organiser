@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="h1_about">Регистрация пользователя</h1>
+    <div class="form_reg_block">
+        <div class="form_reg_block_content">
+            <div class="message__error">
+                {% for msg in get_flashed_messages() %}
+                    <div class="flash">{{ msg }}</div>
+                {% endfor %}
+            </div>
+            <form class="form_reg_style" action="#" method="post">
+                Имя:
+                <input name="name" placeholder="Введите Ваш никнейм" required >
+                <br>
+                Email:
+                <input type="email" name="email" placeholder="Введите Ваш имейл" required >
+                <br>
+                Пароль:
+                <input type="password" name="password" placeholder="Введите пароль" required >
+                <br>
+                <button class="form_reg_button" type="submit" name="form_reg_submit">Зарегистрировать</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
