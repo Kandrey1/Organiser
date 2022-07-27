@@ -14,17 +14,19 @@ from app.models import db
 def create_table():
     db.create_all()
     # закомментировать после успешного первого старта программы
-    # from app.load_start_data import save_data_in_db
-    # save_data_in_db()
+    from app.load_start_data import save_data_in_db
+    save_data_in_db()
 
 
 from app.weather.blueprint import weather_bp
 from app.api.blueprint import api_bp
 from app.user.blueprint import user_bp
+from app.todo.blueprint import todo_bp
 
 app.register_blueprint(weather_bp, url_prefix='/weather')
 app.register_blueprint(api_bp, url_prefix='/api')
 app.register_blueprint(user_bp, url_prefix='/user')
+app.register_blueprint(todo_bp, url_prefix='/todo')
 
 
 @app.route("/")

@@ -38,8 +38,6 @@ def future():
                 context['temps'] = FutureTemperature().get(case_city_id)
                 context['title_city'] = City.query.get(case_city_id).name
 
-            print(type(FutureTemperature().get(city_id=69258)))
-
         except Exception as e:
             flash(f" {e} ")
     return render_template("weather/future.html", context=context)

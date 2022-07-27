@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="todo__form__add">
+        <form class="todo__form__input" action="#" method="post">
+            <div class="message__error">
+                {% for msg in get_flashed_messages() %}
+                    <div class="flash">{{ msg }}</div>
+                {% endfor %}
+            </div>
+            <div class="todo__delete__rows">
+                <button class="todo__reset" name="todo_reset">Сбросить выделение</button>
+                <button class="todo__save" name="todo_save">Сохранить выделенное</button>
+                <button class="todo__delete" name="todo_delete">Удалить выделенное</button>
+                <button class="todo__delegate" name="todo_delegate">Поручить задачи</button>
+            </div>
+            <br>
+            <div class="todo__add">
+                <input class="todo__input" type="text" name="todo" value="" placeholder="Напишите, что вы планируете сделать"/>
+                <button class="button__add__todo" name="todo_add">Добавить</button>
+            </div>
+
+            <div class="todo__my__list">
+                <h2>Мои задачи:</h2>
+                <ol class="todo__list">
+                    {% for todo in context.todo_user %}
+                        <div>
+                            <li class="todo__item"> <label> <input type="checkbox" name="checkedbox" value="{{ todo.id }}" {%if todo.status_boss%} checked {%endif%}> <span class="pseudocheckbox">{{ todo.name }}</span> </label> </li>
+                        </div>
+                    {% endfor %}
+                </ol>
+            </div>
+            <br>
+            <div class="todo__delegate__list">
+                <h2>Делегированные задачи:</h2>
+                <ol class="todo__list">
+                    {% for todo in context.todo_delegate %}
+                        <div>
+                            <li class="todo__item"> <label> <input type="checkbox" name="checkedbox" value="{{ todo.id }}" {%if todo.status_boss%} checked {%endif%}> <span class="pseudocheckbox">Исполнитель <{{ todo.worker_id }}>: {{ todo.name }}</span> </label> </li>
+                        </div>
+                    {% endfor %}
+                </ol>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

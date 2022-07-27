@@ -4,4 +4,36 @@
     <h1 class="title">
       Welcome, {{ current_user.name }}!
     </h1>
+    У Вас в друзьях:
+    <form class="" action="" method="post">
+    <ol>
+        {% for f in context.friends %}
+            <li class="all__friends"> <span class="friends">{{ f.name }} </span> </li>
+            <button class="button__delete__friend" type="submit" value="{{ f.id }}" name="delete__friend">Удалить друга</button>
+        {% endfor %}
+    </ol>
+    </form>
+    <div class="form__friend__user">
+
+            <div class="message__error">
+                {% for msg in get_flashed_messages() %}
+                    <div class="flash">{{ msg }}</div>
+                {% endfor %}
+            </div>
+
+            <form class="form__find__user" action="" method="post">
+                <input name="name" placeholder="Введите имя пользователя" required >
+                <button class="button__find__user" type="submit" name="find__user">Поиск</button>
+            </form>
+            {% if context.users %}
+                <form class="form__add__friend" action="" method="post">
+                    <ul>
+                    {% for u in context.users %}
+                        <li class="case__friend"> <label> <input type="radio" name="radio" value="{{ u.id }}"> <span class="radio__span">{{ u.name }}</span> </label> </li>
+                    {% endfor %}
+                    </ul>
+                     <button class="button__case" name="case__friend">Добавить в друзья</button>
+                </form>
+            {% endif %}
+    </div>
 {% endblock %}

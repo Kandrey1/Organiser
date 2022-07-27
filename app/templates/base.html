@@ -39,6 +39,15 @@
             </div>
         </header>
         <main class="main__container">
+            {% if current_user.is_authenticated %}
+                <div class="personal__menu">
+                    <ul class="personal__menu__list">
+                        <li class="personal__menu__item"><a href="{{ url_for('todo.todo_list') }}" class="personal__menu__link">Список дел</a></li>
+                        <li class="personal__menu__item"><a href="{{ url_for('todo.shop_list') }}" class="personal__menu__link">Списки покупок</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+
             {% block weather_menu %}
             {% endblock %}
 

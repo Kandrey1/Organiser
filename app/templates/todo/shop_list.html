@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+      <div class="shop__form__add">
+        <form class="shop__form__input" action="#" method="post">
+            <div class="message__error">
+                {% for msg in get_flashed_messages() %}
+                    <div class="flash">{{ msg }}</div>
+                {% endfor %}
+            </div>
+            <div class="shop__delete__rows">
+                <button class="shop__reset" name="todo_reset">Сбросить выделение</button>
+                <button class="shop__save" name="todo_save">Сохранить выделенное</button>
+                <button class="shop__delete" name="todo_delete">Удалить выделенное</button>
+            </div>
+            <br>
+            <div class="shop__add">
+                <input class="shop__input" type="text" name="shop" value="" placeholder="Напишите, что вы планируете купить"/>
+                <button class="button__add__shop" name="shop_add">Добавить</button>
+            </div>
+            <div class="shop__my__list">
+                  <ol class="shop__list">
+                    {% for s in context.shop %}
+                        <div>
+                            <li class="shop__item"> <label> <input type="checkbox" name="checkedbox" value="{{ s.id }}" {%if s.check%} checked {%endif%}> <span class="pseudocheckbox">{{ s.name }}</span> </label> </li>
+                        </div>
+                    {% endfor %}
+                </ol>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

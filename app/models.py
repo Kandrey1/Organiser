@@ -1,3 +1,5 @@
+import datetime
+
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import Schema, fields
 from flask_marshmallow import Marshmallow
@@ -9,6 +11,7 @@ db = SQLAlchemy()
 
 
 class Country(db.Model):
+    """ Страны для модуля weather """
     __tablename__ = 'country'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -22,6 +25,7 @@ class Country(db.Model):
 
 
 class City(db.Model):
+    """ Города для модуля weather """
     __tablename__ = 'city'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -45,6 +49,7 @@ class City(db.Model):
 
 
 class Temperature(db.Model):
+    """ Температура в городе для модуля weather """
     __tablename__ = 'temperature'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -66,6 +71,7 @@ class Temperature(db.Model):
 
 
 class TemperatureSchema(ma.Schema):
+    """ Shema для модуля Temperature """
     id = fields.Integer()
     date = fields.DateTime()
     temp_day = fields.String()
@@ -74,12 +80,16 @@ class TemperatureSchema(ma.Schema):
 
 
 class User(UserMixin, db.Model):
+    """ Пользователи приложения """
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(1000))
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
+
+    todo = db.relationship('TodoList', backref='User', uselist=True,
+                           lazy=True)
 
     def __init__(self, name, email, password):
         self.name = name
@@ -88,3 +98,63 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f"<{self.name} - {self.email}>"
+
+
+class TodoList(db.Model):
+    """ Список дел """
+    __tablename__ = 'todo_list'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250))
+    create = db.Column(db.DateTime, default=datetime.datetime.today())
+
+    boss_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    status_boss = db.Column(db.Boolean, default=False)
+    worker_id = db.Column(db.Integer)
+    status_worker = db.Column(db.Boolean, default=False)
+
+    def __init__(self, name, boss_id, status_boss, worker_id, status_worker):
+        self.name = name
+        self.boss_id = boss_id
+        self.status_boss = status_boss
+        self.worker_id = worker_id
+        self.status_worker = status_worker
+
+    def __str__(self):
+        return f"<{self.name}>"
+
+
+class UserFriend(db.Model):
+    """ Друзья пользователя """
+    __tablename__ = 'user_friend'
+
+    id = db.Column(db.Integer, primary_key=True)
+    friend_one = db.Column(db.Integer)
+    friend_two = db.Column(db.Integer)
+
+    def __init__(self, friend_one, friend_two):
+        self.friend_one = friend_one
+        self.friend_two = friend_two
+
+    def __str__(self):
+        return f"<{self.friend_one} - {self.friend_two}>"
+
+
+class ShopList(db.Model):
+    """ Список покупок """
+    __tablename__ = 'shop_list'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250))
+    create = db.Column(db.DateTime, default=datetime.datetime.today())
+    check = db.Column(db.Boolean, default=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init__(self, name, check, user_id):
+        self.name = name
+        self.check = check
+        self.user_id = user_id
+
+    def __str__(self):
+        return f"<{self.name}>"

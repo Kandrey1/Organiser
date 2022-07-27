@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="todo__form__add">
+        <form class="todo__form__input" action="#" method="post">
+            <div class="message__error">
+                {% for msg in get_flashed_messages() %}
+                    <div class="flash">{{ msg }}</div>
+                {% endfor %}
+            </div>
+            <div class="todo__all__list">
+                <h2>Все задачи:</h2>
+                <ol class="todo__list">
+                    {% for todo in context.todos %}
+                        <div>
+                            <li class="todo__item"> <label> <input type="checkbox" name="checkedbox" value="{{ todo.id }}" {%if todo.status_boss%} checked {%endif%}> <span class="pseudocheckbox">{{ todo.name }}</span> </label> </li>
+                            <select name="case_friends-{{ todo.id }}">
+                                    <option value="{{ current_user.id }}" ></option>
+                                {% for f in context.friends %}
+                                    <option {% if todo.worker_id == f.id %} selected {% endif %} value="{{ f.id }}" >{{ f.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <button class="select__delegate" value="{{ todo.id }}" name="delegate">Поручить</button>
+                        </div>
+                    {% endfor %}
+                </ol>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
