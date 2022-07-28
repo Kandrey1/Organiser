@@ -2,17 +2,17 @@
 Сохраняет в БД данные из файлов cities.csv и country.csv.
 """
 import pandas as pd
-# from models import db, Country, City
+from app import create_app
+from config import Config
+from app.models import db, Country, City
 
+app = create_app(Config)
 
 path_start_file = 'app/data/'
 
 
 def save_countries_db():
     """ Сохраняет данные из файла country.csv в таблицу в БД """
-    from run import app
-    from app.models import db, Country
-    db.session.close()
     try:
         df_country = pd.read_csv(f'{path_start_file}country.csv')
         countries = df_country.country.to_list()
@@ -29,9 +29,6 @@ def save_countries_db():
 
 def save_city_db():
     """ Сохраняет данные из файла city.csv в таблицу в БД """
-    from run import app
-    from app.models import db, City
-    db.session.close()
     try:
         df_city = pd.read_csv(f'{path_start_file}city.csv')
         with app.app_context():

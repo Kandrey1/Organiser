@@ -13,9 +13,6 @@ from app.models import db
 @app.before_first_request
 def create_table():
     db.create_all()
-    # закомментировать после успешного первого старта программы
-    from app.load_start_data import save_data_in_db
-    save_data_in_db()
 
 
 from app.weather.blueprint import weather_bp
